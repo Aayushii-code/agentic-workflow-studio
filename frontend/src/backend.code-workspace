@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "backend",
+			"path": "../../../../../Downloads/workflow-studio-main/workflow-studio-main/backend"
+		},
+		{
+			"name": "workflow",
+			"path": "../.."
+		}
+	],
+	"settings": {}
+}
