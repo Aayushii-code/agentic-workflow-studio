@@ -37,8 +37,24 @@ executors below — not the DAG compiler in `engine/`), and top-level `tests/`.
       Run with: `backend/venv/Scripts/python.exe -m pytest tests/ -v` (repo root `pytest.ini`
       adds `tests/` to `testpaths`, `asyncio_mode = auto`; `tests/conftest.py` puts
       `backend/` on `sys.path` and imports `app.executors.bootstrap`).
-- [ ] Eval harness — next
-- [ ] READMEs — next
+- [x] Eval harness (`tests/eval/`): `harness.py` (EvalCase/run_case/run_suite),
+      `scoring.py` (exact_match, llm_judge — llm_judge degrades to a keyword heuristic when
+      judge_model is "mock-llm", so it's runnable with zero API keys; point judge_model at a
+      real Groq model + GROQ_API_KEY for genuine LLM-as-judge grading), golden cases in
+      `tests/eval/cases/*.json` for both agent and tool node types. Run standalone with
+      `backend/venv/Scripts/python.exe tests/eval/run_eval.py` (exits nonzero on any failure,
+      separate from pytest). 5 pytest tests added for the harness itself
+      (`tests/unit/test_eval_harness.py`).
+- [x] READMEs written: `backend/app/executors/README.md`, `backend/app/gateway/README.md`,
+      `backend/app/agents/README.md`, `backend/app/tools/README.md` (includes the sandboxing
+      rule + documented residual risk for code_exec), `tests/README.md` (pytest vs eval harness).
+
+## Final state
+
+35 pytest tests passing (`pytest tests/ -v`), 6/6 eval golden cases passing
+(`tests/eval/run_eval.py`). All deliverables from the session brief are complete. Verified
+`git diff --stat` against `backend/app/api`, `backend/app/engine`, `backend/app/schemas` is
+empty — no teammate files touched.
 
 ## Design notes (read before resuming)
 

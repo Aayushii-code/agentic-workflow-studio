@@ -1,0 +1,33 @@
+[
+  {
+    "id": "agent-analyzer-mock-exact",
+    "node_type": "agent",
+    "config": {"name": "Analyzer", "prompt": "Analyze the input", "model": "mock-llm"},
+    "input_data": {"output": "Hello HPE"},
+    "output_path": "output",
+    "scoring": "exact_match",
+    "expected_output": "[mock-llm response] Analyze the input\n\nInput: Hello HPE"
+  },
+  {
+    "id": "agent-analyzer-model-used",
+    "node_type": "agent",
+    "config": {"name": "Analyzer", "prompt": "Say hi", "model": "mock-llm"},
+    "input_data": {},
+    "output_path": "model_used",
+    "scoring": "exact_match",
+    "expected_output": "mock-llm"
+  },
+  {
+    "id": "agent-summarizer-judge",
+    "node_type": "agent",
+    "config": {
+      "name": "Summarizer",
+      "prompt": "Summarize the text, keeping the words HPE and workflow",
+      "model": "mock-llm"
+    },
+    "input_data": {"output": "HPE workflow studio is a visual workflow tool."},
+    "output_path": "output",
+    "scoring": "llm_judge",
+    "rubric": "HPE, workflow"
+  }
+]
