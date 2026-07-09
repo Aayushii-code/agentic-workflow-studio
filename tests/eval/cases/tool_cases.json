@@ -1,0 +1,29 @@
+[
+  {
+    "id": "tool-calculator-basic",
+    "node_type": "tool",
+    "config": {"tool_name": "calculator", "input": {"expression": "6 * 7"}},
+    "input_data": {},
+    "output_path": "output.result",
+    "scoring": "exact_match",
+    "expected_output": 42
+  },
+  {
+    "id": "tool-web-search-title",
+    "node_type": "tool",
+    "config": {"tool_name": "web_search", "input": {"query": "hpe", "max_results": 1}},
+    "input_data": {},
+    "output_path": "output.results.0.title",
+    "scoring": "exact_match",
+    "expected_output": "Result 1 for 'hpe'"
+  },
+  {
+    "id": "tool-code-exec-stdout",
+    "node_type": "tool",
+    "config": {"tool_name": "code_exec", "input": {"code": "print(6 * 7, end='')"}},
+    "input_data": {},
+    "output_path": "output.stdout",
+    "scoring": "exact_match",
+    "expected_output": "42"
+  }
+]
