@@ -1,8 +1,11 @@
 from typing import Any
 
+import app.executors.bootstrap  # noqa: F401
+
 from app.schemas.workflow import WorkflowDefinition, WorkflowNode
 from app.engine.graph_parser import get_execution_order
 from app.engine.state_manager import WorkflowState
+from app.executors.registry import get_executor
 
 
 class WorkflowEngine:
@@ -35,12 +38,14 @@ class WorkflowEngine:
                 incoming_outputs.append(output)
 
         if not incoming_outputs:
-            return None
+            return {}
 
         if len(incoming_outputs) == 1:
             return incoming_outputs[0]
 
-        return incoming_outputs
+        return {
+            "inputs": incoming_outputs
+        }
 
     async def run(
         self,
@@ -52,11 +57,12 @@ class WorkflowEngine:
             node = self._get_node(workflow, node_id)
             node_input = self._get_input(workflow, node_id)
 
-            result = {
-                "node_id": node.id,
-                "node_type": node.type,
-                "input": node_input,
-            }
+            executor = get_executor(node.type)
+
+            result = await executor(
+                node,
+                node_input,
+            )
 
             self.state.set_output(
                 node.id,
