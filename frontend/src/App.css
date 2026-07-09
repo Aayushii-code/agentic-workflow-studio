@@ -183,3 +183,65 @@ body,
 .react-flow__controls button:hover {
   background: #232837;
 }
+.main-area {
+  flex: 1;
+  min-width: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.prompt-bar {
+  height: 72px;
+  flex-shrink: 0;
+  padding: 14px 18px;
+  background: #0f1117;
+  border-bottom: 1px solid #23262f;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.prompt-input {
+  flex: 1;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid #2a2e3a;
+  background: #1b1e28;
+  color: #e6e8ec;
+  padding: 0 16px;
+  font-size: 14px;
+  outline: none;
+}
+
+.prompt-input::placeholder {
+  color: #7f8899;
+}
+
+.prompt-input:focus {
+  border-color: #6ea8fe;
+  box-shadow: 0 0 0 3px #6ea8fe25;
+}
+
+.run-button {
+  height: 44px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 12px;
+  background: #6ea8fe;
+  color: #07111f;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.run-button:hover {
+  filter: brightness(1.08);
+}
+
+.canvas-wrapper {
+  flex: 1;
+  min-width: 0;
+  height: auto;
+  overflow: hidden;
+}
