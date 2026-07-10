@@ -22,6 +22,35 @@ const nodeTypes = {
   output: OutputNode,
 };
 
+const getDefaultConfig = (type) => {
+  const configs = {
+    input: {
+      name: 'User Input',
+      prompt: '',
+    },
+
+    agent: {
+      name: 'AI Agent',
+      prompt: 'Process the user input and return a useful response.',
+      model: 'llama-3.3-70b-versatile',
+    },
+
+    tool: {
+      name: 'Tool',
+      tool_type: 'document-analysis',
+    },
+
+    output: {
+      name: 'Final Output',
+      format: 'text',
+    },
+  };
+
+  return configs[type] || {
+    name: 'Workflow Node',
+  };
+};
+
 function CanvasInner() {
   const {
     nodes,
@@ -64,7 +93,7 @@ function CanvasInner() {
       position,
       data: {
         label: type.charAt(0).toUpperCase() + type.slice(1),
-        config: {},
+        config: getDefaultConfig(type),
         status: '○ Waiting',
       },
     });
