@@ -130,7 +130,7 @@ npm run dev
 
 ## Team
 
-**Aayushi Sora**
+**Aayushi Kapoor**
 - Backend
 - Workflow Engine
 - FastAPI Integration
